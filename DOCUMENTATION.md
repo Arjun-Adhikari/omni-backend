@@ -125,6 +125,7 @@ All IDs are UUIDv4. All tables have `createdAt`/`updatedAt`. Foreign keys use `O
 | POST | `/api/channels` | Create a channel |
 | GET | `/api/channels/:id` | Get one channel |
 | PATCH | `/api/channels/:id` | Update a channel |
+//This patch for updating a channel doenot need to be included.
 | DELETE | `/api/channels/:id` | Delete a channel |
 | GET | `/api/conversations` | Inbox list (customer + channel + last message, sorted by `lastMessageAt` DESC) |
 | GET | `/api/conversations/:id` | Conversation detail with full message history |
