@@ -1,4 +1,5 @@
 import express from 'express';
+import helmet from 'helmet';
 import cors from 'cors';
 import { env } from './config/env.js';
 import webhookRoute from './routes/webhook.route.js';
@@ -9,6 +10,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 const app = express();
 
 app.disable('x-powered-by');
+app.use(helmet());
 
 const corsOrigins = env.CORS_ORIGINS === '*' ? true : env.CORS_ORIGINS.split(',');
 
