@@ -5,6 +5,10 @@ import messageRoute from './message.route.js';
 
 const router = Router();
 
+router.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', uptime: process.uptime() });
+});
+
 router.use('/channels', channelRoute);
 router.use('/conversations', conversationRoute);
 router.use('/conversations', messageRoute);
