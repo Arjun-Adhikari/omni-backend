@@ -26,7 +26,12 @@ export async function verifyWebhook(query) {
 }
 
 export async function handleWebhookEvent(rawBody, signatureHeader) {
-  const payload = JSON.parse(rawBody.toString());
+  let payload;
+  try {
+    payload = JSON.parse(rawBody.toString());
+  } catch {
+    throw new AppError('Malformed webhook payload', 400);
+  }
 
   if (payload.object !== 'page' || !Array.isArray(payload.entry)) {
     throw new AppError('Invalid webhook payload', 400);
