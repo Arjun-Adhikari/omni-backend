@@ -12,7 +12,10 @@ const app = express();
 app.disable('x-powered-by');
 app.use(helmet());
 
-const corsOrigins = env.CORS_ORIGINS === '*' ? true : env.CORS_ORIGINS.split(',');
+const corsOrigins =
+  env.CORS_ORIGINS === '*'
+    ? true
+    : env.CORS_ORIGINS.split(',').map((origin) => origin.trim());
 
 app.use(cors({ origin: corsOrigins }));
 
