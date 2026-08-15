@@ -19,12 +19,28 @@ function validateStatus(status) {
   return status;
 }
 
+const DEFAULT_PAGE = 1;
+const DEFAULT_LIMIT = 20;
+const MAX_LIMIT = 100;
+
+function parsePagination(query) {
+  const page = Number.parseInt(query.page, 10);
+  const limit = Number.parseInt(query.limit, 10);
+
+  return {
+    page: Number.isInteger(page) && page > 0 ? page : DEFAULT_PAGE,
+    limit: Number.isInteger(limit) && limit > 0 ? Math.min(limit, MAX_LIMIT) : DEFAULT_LIMIT,
+  };
+}
+
 export async function listConversations(req, res) {
-  const conversations = await conversationService.listConversations();
+  const { page, limit } = parsePagination(req.query);
+  const conversations = await conversationService.listConversations(page, limit);
   res.status(200).json({
     success: true,
     message: 'Conversations fetched successfully',
     data: conversations,
+    pagination: { page, limit },
   });
 }
 

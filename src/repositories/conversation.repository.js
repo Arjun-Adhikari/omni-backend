@@ -30,7 +30,7 @@ export async function findConversationById(id) {
   });
 }
 
-export async function findAllConversations() {
+export async function findAllConversations(page, limit) {
   return Conversation.findAll({
     include: [
       ...conversationInclude,
@@ -44,6 +44,8 @@ export async function findAllConversations() {
       },
     ],
     order: [['lastMessageAt', 'DESC']],
+    limit,
+    offset: (page - 1) * limit,
   });
 }
 

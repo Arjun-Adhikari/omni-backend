@@ -1,8 +1,8 @@
 import * as conversationRepository from '../repositories/conversation.repository.js';
 import { AppError } from '../utils/AppError.js';
 
-export async function listConversations() {
-  return conversationRepository.findAllConversations();
+export async function listConversations(page, limit) {
+  return conversationRepository.findAllConversations(page, limit);
 }
 
 export async function getConversationMessages(id) {
