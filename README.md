@@ -53,6 +53,7 @@ CORS_ORIGINS=*            # comma-separated list for production
 
 | Method | Path | Purpose |
 |---|---|---|
+| GET | `/api/health` | Liveness probe (status + uptime) |
 | GET | `/webhook/facebook` | Facebook webhook verification handshake |
 | POST | `/webhook/facebook` | Incoming Facebook events (signature-verified) |
 | GET | `/api/channels` | List channels (tokens stripped) |
